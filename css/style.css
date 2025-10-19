@@ -1,0 +1,245 @@
+/* css/style.css - Golden Pay basic styles (Day 3) */
+
+/* --- Reset / Box sizing --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Root variables (brand colors, spacing) --- */
+:root {
+  --bg: #ffffff;
+  --text: #0b2438;
+  --muted: #6b7a88;
+  --brand: #0b81ff;
+  /* adjust to your Golden Pay color */
+  --accent: #ffd66b;
+  --container-max: 1100px;
+  --gap: 1.25rem;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(11, 36, 56, 0.08);
+  --fw-normal: 400;
+  --fw-bold: 700;
+}
+
+/* --- Typography --- */
+html {
+  font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+body {
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Container --- */
+.container {
+  width: 90%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* --- Header / Nav --- */
+header {
+  border-bottom: 1px solid #edf2f7;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.7));
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 1rem 0;
+}
+
+.logo {
+  font-weight: var(--fw-bold);
+  color: var(--brand);
+  text-decoration: none;
+  font-size: 1.125rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+.nav-list a:hover {
+  background: rgba(11, 129, 255, 0.08);
+  color: var(--brand);
+}
+
+/* --- Hero --- */
+.hero {
+  padding: 3.25rem 0;
+  background: linear-gradient(180deg, rgba(11, 129, 255, 0.04), rgba(255, 246, 230, 0.02));
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.05;
+}
+
+.hero p {
+  color: var(--muted);
+  margin-bottom: 1rem;
+  max-width: 60ch;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.75rem 1.1rem;
+  border-radius: 10px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+
+/* --- Feature grid --- */
+.features {
+  padding: 2rem 0;
+}
+
+.features h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.feature {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.feature h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --- Contact form basics --- */
+form {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 600px;
+}
+
+label {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #e6eef7;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  cursor: pointer;
+  border: none;
+  background: var(--brand);
+  color: #fff;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* --- Footer --- */
+footer {
+  border-top: 1px solid #edf2f7;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.footer-nav {
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+/* --- Responsive layout breakpoints --- */
+@media (min-width: 700px) {
+  .hero .container {
+    grid-template-columns: 1fr 430px;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  html {
+    font-size: 17px;
+  }
+
+  header .container {
+    padding: 1.25rem 0;
+  }
+
+  .hero {
+    padding: 4.25rem 0;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid rgba(11, 129, 255, 0.18);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
