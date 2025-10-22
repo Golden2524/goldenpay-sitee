@@ -47,6 +47,12 @@ body {
 }
 
 /* --- Header / Nav --- */
+/* Ensure no horizontal overflow when nav opens */
+header,
+.container {
+  overflow-x: hidden;
+}
+
 header {
   border-bottom: 1px solid #edf2f7;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.7));
@@ -67,24 +73,98 @@ header .container {
   font-size: 1.125rem;
 }
 
+/* ========== Responsive nav / hamburger (cleaned) ========== */
+
+/* Hide the native button style and set layout */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+  color: var(--text);
+  border-radius: 8px;
+}
+
+/* Mobile: hide nav by default (stacked links) */
+.nav {
+  display: none;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+/* When open (toggled by JS), show nav as stacked vertical list */
+.nav.open {
+  display: block;
+}
+
 .nav-list {
   list-style: none;
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 0;
 }
 
+/* Nav link styles for mobile */
 .nav-list a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
   text-decoration: none;
   color: var(--text);
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
 }
 
-.nav-list a:hover {
-  background: rgba(11, 129, 255, 0.08);
+/* Slight hover and focus on mobile */
+.nav-list a:hover,
+.nav-list a:focus {
+  background: rgba(11, 129, 255, 0.06);
   color: var(--brand);
+  outline: none;
 }
+
+/* Add transition for the svg lines when toggled */
+.nav-toggle svg {
+  transition: transform 220ms ease;
+}
+
+/* animate burger -> X */
+.nav-toggle[aria-expanded="true"] .line1 {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .line2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-toggle[aria-expanded="true"] .line3 {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Desktop behaviour: hide toggle, show nav horizontally */
+@media (min-width: 700px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    display: block;
+    /* CSS controls display on desktop */
+    margin-top: 0;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+    /* or 'center' if you prefer */
+  }
+}
+
 
 /* --- Hero --- */
 .hero {
@@ -208,6 +288,29 @@ footer {
 
   .feature-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* visually hide on larger screens */
+@media (min-width: 700px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+/* Desktop behavior: horizontal nav */
+@media (min-width: 700px) {
+  .nav {
+    display: block !important;
+    /* ensure visible on desktop */
+    margin-top: 0;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
   }
 }
 
